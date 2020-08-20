@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  /* set box-sizing to be an inherited property */
+  box-sizing: inherit;
+}
+
+html {
+  // desired font size / default size * 100
+  // 10px / 16px * 100
+  // this defines what 1rem is for the entire site
+  font-size: 62.5%;
+
+  // BECAUSE WE ARE WRITING A DESKTOP 1ST STRATEGY, LARGE WIDTH MEDIA QUERIES ARE WRITTEN 1ST TO AVOID CONFLICTS
+  // THE OPPOSITE IS TRUE WHEN WE HAVE A MOBILE 1ST STRATEGY. SMALL WIDTH ARE WRITTEN 1ST TO AVOID CONFLICTS
+
+  // width is less than 1200px?
+  @include respond(tab-land) {
+    // for phones make 1 rem = 9px => 9 / 16 * 100 = 56.25%
+    font-size: 56.25%;
+  }
+
+  // width is less than 900px?
+  @include respond(tab-port) {
+    // for phones & portrait tablets make 1 rem = 8px => 8 / 16 * 100 = 50%
+    font-size: 50%;
+  }
+
+  @include respond(big-desktop) {
+    // for phones make 1 rem = 12px => 12 / 16 * 100 = 50%
+    font-size: 75%;
+  }
+}
+
+body {
+  background-color: $color-gray-light-1;
+  padding: 3rem;
+  box-sizing: border-box;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+
+}
+
+::selection {
+  background-color: $color-primary-dark;
+  color: $color-white;
+}
